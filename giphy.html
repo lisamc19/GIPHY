@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<title>GIPHY</title>
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="buttonContainer">
+
+</div>
+
+<div id="addFoodForm">
+
+	<strong>Add new food:</strong><br>
+
+	<input type="text" id="newFoodInput" name="newFood"><br>
+
+	<input type="button" id="newFoodButton" value="Submit!">
+
+</div>
+
+<div id="imageContainer">
+	
+</div>
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function(){
+
+
+
+	var topics = ["chicken",
+				"pork",
+				"banana",
+				"avacado",
+				"apple",
+				"bread",
+				"cheese",
+				"almonds",
+				"brocolli",
+				"lentils",
+				"hamburger"];
+
+	for (var i=0; i<topics.length; i++) {
+		var topic = topics[i];
+		addButtonAndCreateClickHandler(topic);
+	}
+	addClickHandlerForSubmitButton();
+
+	function addClickHandlerForSubmitButton() {
+		$('#newFoodButton').click(function(){
+			var newTopic = $('#newFoodInput').val();
+			topics.push(newTopic);
+			addButtonAndCreateClickHandler(newTopic);
+		});
+	}
+
+	function addButtonAndCreateClickHandler(topic) {
+		var input = '<input type="button" class="newButton" value="' + topic + '"' + ' id="' + topic + '"' + '/>';
+		$('#buttonContainer').append(input);
+		addClickHandlerForTopic(topic); 
+	}
+
+	function addClickHandlerForTopic(topic) {
+		$('#' + topic).click(function() {
+			getImagesForTopic(topic);
+		});
+
+	}
+
+	var responseData;
+	function getImagesForTopic(query) {
+
+		$("#imageContainer").empty();
+		var url = "https://api.giphy.com/v1/gifs/search?api_key=875186ca0896469da355b6b20003d222&q=" + query + "&limit=10&offset=0&rating=G&lang=en";
+		$.get(url, function(response){
+			responseData = response.data;
+			for (var i = 0; i < response.data.length; i++) {
+				var image = response.data[i];
+				var fixedHeightStillImageUrl = image.images.fixed_height_still.url;
+				var imageTag = 'Rating: ' + image.rating + '</br><img src="' + fixedHeightStillImageUrl + '"' + ' id="' + image.id + '"></br>';
+				$("#imageContainer").append(imageTag);
+				addClickHandlerForImage(image.id);
+			}
+		});
+	}
+
+	function addClickHandlerForImage(imageId) {
+		$('#' + imageId).click(function() {
+			var newImage;
+			for (var i = 0; i < responseData.length; i++) {
+				var image = responseData[i];
+				if (image.id === imageId) {
+					newImage = image.images;
+				}
+			}
+
+			var currentSrcUrl = $('#' + imageId).prop('src');
+			var newImageUrl;
+			if (currentSrcUrl === newImage.fixed_height_still.url) {
+				newImageUrl = newImage.fixed_height.url;
+			} else {
+				newImageUrl = newImage.fixed_height_still.url;
+			}
+
+			$('#' + imageId).attr("src", newImageUrl);
+		});
+
+	}
+});
+
+
+</script>
+
+</body>
+
+</html>
