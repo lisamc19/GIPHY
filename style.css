@@ -1,0 +1,86 @@
+#newFoodButton {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#chicken {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#pork {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#banana {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#avacado {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#apple {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#bread {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#cheese {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#almonds {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#brocolli {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#lentils {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#hamburger {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+#topic {
+	background-color: teal;
+}
+.newButton {
+	background-color: teal;
+	color: white;
+	padding: 5px 8px;
+}
+img {
+	display: flex;
+ 	flex-wrap: wrap;
+ 	padding: 10px 10px;
+ 	height: 200px;
+ 	width: 300px;
+ }
+#imageContainer {
+	float: left;
+}
+#addFoodForm {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#buttonContainer {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
